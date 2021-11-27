@@ -1,5 +1,14 @@
 import 'package:bmi_calculator/layout.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'icon_content.dart';
+
+Color activeCardColor = Color(0xFF1D1E33);
+Color inactiveCardColor = Color(0xFF111328);
+Color buttonColor = Color(0xffEB1555);
+
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -7,6 +16,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +40,38 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                      child: ReusableCard(
-                    color: Color(0xFF1D1E33),
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    child: ReusableCard(
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.male,
+                        text: 'Male',
+                      ),
+                      color: selectedGender == Gender.male
+                          ? activeCardColor
+                          : inactiveCardColor,
+                    ),
                   )),
                   Expanded(
-                      child: ReusableCard(
-                    color: Color(0xFF1D1E33),
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    child: ReusableCard(
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.female,
+                        text: 'Female',
+                      ),
+                      color: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                    ),
                   )),
                 ],
               ),
@@ -45,7 +82,7 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                       child: ReusableCard(
-                    color: Color(0xFF1D1E33),
+                    color: activeCardColor,
                   )),
                 ],
               ),
@@ -56,11 +93,11 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                       child: ReusableCard(
-                    color: Color(0xFF1D1E33),
+                    color: activeCardColor,
                   )),
                   Expanded(
                       child: ReusableCard(
-                    color: Color(0xFF1D1E33),
+                    color: activeCardColor,
                   )),
                 ],
               ),
@@ -68,9 +105,11 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               flex: 1,
               child: Container(
-                color: Color(0xffEB1555),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: buttonColor,
+                ),
                 width: double.infinity,
-                margin: EdgeInsets.only(top: 10),
                 height: double.maxFinite,
               ),
             )
