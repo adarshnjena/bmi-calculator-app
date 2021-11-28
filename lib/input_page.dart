@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:bmi_calculator/layout.dart';
+import 'package:bmi_calculator/results.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Constants.dart';
@@ -220,24 +222,34 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               flex: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: kbuttonColor,
-                ),
-                child: Center(
-                  child: Text(
-                    'Calculate Your BMI',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Nunito',
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultsPage(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: kbuttonColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Calculate Your BMI',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Nunito',
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
+                  width: double.infinity,
+                  height: double.maxFinite,
                 ),
-                width: double.infinity,
-                height: double.maxFinite,
               ),
             )
           ],
