@@ -1,6 +1,8 @@
 //MALE AND FEMALE ICONS WIDGIT
 import 'package:flutter/widgets.dart';
 
+import 'Constants.dart';
+
 class IconContent extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -17,12 +19,7 @@ class IconContent extends StatelessWidget {
         SizedBox(height: 15),
         Text(
           text,
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            letterSpacing: 2,
-            fontSize: 15,
-            color: Color(0xFF8D8E98),
-          ),
+          style: ktextStyle(),
         )
       ],
     );
